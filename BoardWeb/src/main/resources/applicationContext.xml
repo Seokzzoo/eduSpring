@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- IoC 설정을 Annotation으로 처리하기 위한 선언 -->
+	<!-- polymorphism3 패키지로 시작하는 클래스들 중에 @Component가 붙은 클래스를 찾아 객체 생성해라. -->
+	<context:component-scan base-package="polymorphism3"></context:component-scan>
+
+	<!-- 유지보수 과정에서 변경되는 객체는 하나만 생성되도록 bean 등록한다. -->
+	<bean class="polymorphism3.SonySpeaker"></bean> 
+	
+	<!-- Spring 컨테이너가 생성할 POJO 객체를 bean 등록한다. 
+	<bean id="tv" 
+	      class="polymorphism3.SamsungTV"
+	      init-method="멤버변수초기화"
+	      destroy-method="자원해제"
+	      lazy-init="true"></bean>
+
+	<bean id="speaker" class="polymorphism3.SonySpeaker"></bean> 
+	    
+	<bean id="tv" class="polymorphism3.GoogleTV" p:speaker-ref="speaker" p:price="1700000"></bean>
+
+	<bean id="collection" class="polymorphism3.CollectionBean">
+		<property name="memberList">
+			<props>
+				<prop key="둘리">도봉동</prop>
+				<prop key="도우너">능동</prop>
+				<prop key="또치">쌍문동</prop>
+			</props>
+		</property>
+	</bean> 
+	-->
+	
+</beans>
+
+
+
+
+
+
+
+
+
