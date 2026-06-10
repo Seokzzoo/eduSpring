@@ -10,11 +10,16 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
-	private BoardDAOSpring boardDAO;
+	private BoardDAO boardDAO;
 
 	@Override
 	public void insertBoard(BoardVO vo) {
+		// 0번 글을 등록하려고 할 때 강제로 예외를 발생시킨다.
+//		if(vo.getSeq() == 0) {
+//			throw new IllegalArgumentException();
+//		}
 		boardDAO.insertBoard(vo);
+//		boardDAO.insertBoard(vo); // 무결성 제외 조건 예외 -> tx test
 	}
 
 	@Override

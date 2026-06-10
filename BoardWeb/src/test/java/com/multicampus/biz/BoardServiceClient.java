@@ -20,19 +20,19 @@ public class BoardServiceClient {
 		// 3. 비즈니스 컴포넌트를 사용한다. 
 		// 글 등록
 		BoardVO vo = new BoardVO();
-		vo.setSeq(999);
+		vo.setSeq(100);
 		vo.setTitle("Spring 테스트");
 		vo.setWriter("테스터");
-		vo.setContent("Spring 테스트 중입니다.");
+		vo.setContent("Spring 테스트 중입니다.")	;
 		boardService.insertBoard(vo);
 		
-//		// 글 목록 검색
-//		List<BoardVO> boardList = boardService.getBoardList(vo);
-//		for (BoardVO board : boardList) {
-//			System.out.println("---> " + board.toString());
-//		}
-//		
-//		// 글 삭제
+		// 글 목록 검색
+		List<BoardVO> boardList = boardService.getBoardList(vo);
+		for (BoardVO board : boardList) {
+			System.out.println("---> " + board.toString());
+		}
+		
+		// 글 삭제
 //		vo.setSeq(4);
 //		boardService.deleteBoard(vo);
 		

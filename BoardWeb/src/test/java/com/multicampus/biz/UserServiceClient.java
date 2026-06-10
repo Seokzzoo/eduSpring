@@ -17,7 +17,7 @@ public class UserServiceClient {
 		
 		// 3. 비즈니스 컴포넌트를 사용한다. 
 		UserVO vo = new UserVO();
-		vo.setId("guest");
+		vo.setId("admin");
 		vo.setPassword("test123");
 		
 		UserVO user = userService.getUser(vo);
