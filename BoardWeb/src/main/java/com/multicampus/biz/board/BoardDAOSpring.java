@@ -25,7 +25,7 @@ public class BoardDAOSpring implements BoardDAO {
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET    = "select * from board where seq=?";
 	private final String BOARD_LIST   = "select * from board order by seq desc";
-
+	
 	// CRUD 기능의 메소드 구현
 	// 글 등록
 	public void insertBoard(BoardVO vo) {

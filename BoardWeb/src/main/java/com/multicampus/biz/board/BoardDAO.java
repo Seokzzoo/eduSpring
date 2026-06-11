@@ -19,5 +19,4 @@ public interface BoardDAO {
 
 	// 글 목록 검색
 	List<BoardVO> getBoardList(BoardVO vo);
-
 }

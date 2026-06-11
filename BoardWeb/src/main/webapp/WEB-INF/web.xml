@@ -7,16 +7,38 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:business-layer.xml</param-value>
+	</context-param>
+	
+	<!-- Listener는 Pre-Loading된다 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Servlet은 Lazy-Loading된다 -->
 	<servlet>
 		<servlet-name>action</servlet-name>
 		<!-- <servlet-class>com.multicampus.web.DispatcherServlet</servlet-class> -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- Spring에서 제공하는 Controller를 사용하자 -->
+		<init-param><!-- xml파일의 위치를 파라미터로 표시 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/config/presentation-layer.xml</param-value>
+		</init-param>
 	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
+	
+	<!-- 404 에러 설정 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	
+	
 </web-app>

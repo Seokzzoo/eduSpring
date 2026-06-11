@@ -8,14 +8,11 @@
 </head>
 <body>
 <center>
-<h1>게시판 프로그램입니다.</h1>
+<h1>페이지를 찾을 수 없습니다!</h1>
 <hr>
 <br><br><br>
-<a href="login.do">로그인 화면으로 이동</a>
+<a href="/">Main</a> 화면으로 이동
 <!-- <a href="loginView.jsp">로그인 화면으로 이동</a> -->
-
-<br><br><br>
-<a href="getBoardList.do">글목록 화면으로 이동</a>
 </center>
 </body>
 </html>

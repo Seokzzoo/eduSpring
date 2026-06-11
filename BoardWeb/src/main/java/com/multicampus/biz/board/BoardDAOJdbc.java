@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.multicampus.biz.common.JDBCUtil;
 
 // 2. DAO(Data Access Object) 클래스
@@ -23,11 +21,11 @@ public class BoardDAOJdbc implements BoardDAO {
 	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET    = "select * from board where seq=?";
-	private final String BOARD_LIST   = "select * from board order by seq desc";
+	private final String BOARD_LIST_T = "select * from board where title   like '%'||?||'%' order by seq desc";
+	private final String BOARD_LIST_C = "select * from board where content like '%'||?||'%' order by seq desc";
 
 	// CRUD 기능의 메소드 구현
 	// 글 등록
-	@Override
 	public void insertBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 insertBoard() 기능 처리");
 		try {
@@ -45,7 +43,6 @@ public class BoardDAOJdbc implements BoardDAO {
 	}
 
 	// 글 수정
-	@Override
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 updateBoard() 기능 처리");
 		try {
@@ -63,7 +60,6 @@ public class BoardDAOJdbc implements BoardDAO {
 	}
 
 	// 글 삭제
-	@Override
 	public void deleteBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 deleteBoard() 기능 처리");
 		try {
@@ -79,7 +75,6 @@ public class BoardDAOJdbc implements BoardDAO {
 	}
 	
 	// 글 상세 조회
-	@Override
 	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 getBoard() 기능 처리");
 		BoardVO board = null;
@@ -106,13 +101,21 @@ public class BoardDAOJdbc implements BoardDAO {
 	}
 
 	// 글 목록 검색
-	@Override
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		System.out.println("===> JDBC 기반으로 getBoardList() 기능 처리");
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
 		try {
 			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_LIST);
+			
+			if(vo.getCondition().equals("title")) {
+				System.out.println("BOARD_LIST_T 실행");
+				stmt = conn.prepareStatement(BOARD_LIST_T);
+			} else if(vo.getCondition().equals("content")) {
+				System.out.println("BOARD_LIST_C 실행");
+				stmt = conn.prepareStatement(BOARD_LIST_C);
+			}
+			stmt.setString(1, vo.getKeyword());
+			
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				BoardVO board = new BoardVO();

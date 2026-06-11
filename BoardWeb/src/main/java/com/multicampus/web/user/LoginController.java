@@ -1,7 +1,6 @@
 package com.multicampus.web.user;
 
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.multicampus.biz.user.UserDAO;
 import com.multicampus.biz.user.UserDAOJdbc;
@@ -10,9 +9,9 @@ import com.multicampus.biz.user.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class LoginController implements Controller {
 
-	@Override
+public class LoginController {
+
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("로그인 처리");
 		
