@@ -2,6 +2,10 @@ package com.multicampus.biz.board;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,6 +25,20 @@ public class BoardVO {
 	// 검색 관련 변수
 	private String condition;
 	private String keyword;
+	private MultipartFile uploadFile;
+	
+	@JsonIgnore
+	public String getCondition() {
+		return condition;
+	}
+	@JsonIgnore
+	public String getKeyword() {
+		return keyword;
+	}
+	@JsonIgnore
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
 	
 //	public int getSeq() {
 //		return seq;

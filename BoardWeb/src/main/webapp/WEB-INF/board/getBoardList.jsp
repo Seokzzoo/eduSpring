@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!-- 
 	JSTL(JSP Standard Tag Library)이란?
@@ -49,13 +50,15 @@
 	<td>${board.seq }</td>
 	<td><a href="getBoard.do?seq=${board.seq }">${board.title }</a></td>
 	<td>${board.writer }</td>
-	<td>${board.regDate }</td>
+	<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
 	<td>${board.cnt }</td>
 </tr>
 </c:forEach>
 
 </table>
 <a href="insertBoardView.do">글 등록</a>화면으로 이동
+<br>
+<a href="/">HOME</a>
 </center>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- Alias 선언 -->
+	<typeAlias alias="board" type="com.multicampus.biz.board.BoardVO"/>
+	
+	<!-- ResultMap 선언 -->
+	<resultMap class="board" id="boardResult">
+		<result property="seq"  	column="SEQ"  		nullValue=""/>
+		<result property="title"  	column="TITLE"  	nullValue="No title"/>
+		<result property="writer"  	column="WRITER" 	nullValue="No name"/>
+		<result property="content"  column="CONTENT"  	nullValue="No content"/>
+		<result property="regDate"  column="REGDATE"  	nullValue=""/>
+		<result property="cnt"  	column="CNT"  		nullValue=""/>
+	</resultMap>
+
+	<!-- SQL 명령어의 id는 전체 시스템에서 유일해야 한다. 가급적 DAO 클래스 메소드 이름과 일치시킨다. -->
+	<!-- parameterClass="board"는 생략 가능하지만
+		 resultClass는 생략할 수 없다 
+	-->
+	<insert id="insertBoard">
+		insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board), #title#, #writer#, #content#)
+	</insert>
+		
+	<update id="updateBoard">
+		update board set title=#title#, content=#content# where seq=#seq#
+	</update>
+	
+	<delete id="deleteBoard">
+		delete board where seq=#seq#
+	</delete>
+	
+	<select id="getBoard" 
+			resultClass="board">
+		<!-- 
+		select * 
+		from board 
+		where seq <=#seq#
+		 -->
+		
+		<![CDATA[
+		select * 
+		from board 
+		where seq = #seq#
+		]]>
+	</select>
+	
+	<select id="getBoardList" resultMap="boardResult">
+		select * from board order by seq desc
+	</select>
+</sqlMap>

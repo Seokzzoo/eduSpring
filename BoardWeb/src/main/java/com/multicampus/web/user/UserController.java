@@ -23,6 +23,7 @@ public class UserController {
 //	@RequestMapping(value="/login.do", method = RequestMethod.GET)
 	@GetMapping("/login.do") // 버전업
 	public String loginView(@ModelAttribute("user") UserVO vo) throws Exception {
+//		System.out.println(9/0); // arithmetic error 발생
 		System.out.println("---> loginView() 실행");
 		// Command 객체에 값을 설정하면 JSP 파일에서 사용할 수 있다
 		vo.setId("admin");

@@ -68,6 +68,26 @@
 		<property name="paramName" value="lang"/>
 		</bean>
 	</mvc:interceptors>
+	
+	<!-- 파일 업로드 설정
+	MultipartResolver는 사용자가 업로드한 파일의 정보를 추출하여 MultipartFile 객체를 생성하고 초기화한다.
+	-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
+	
+	<!-- 예외 설정 
+	-->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArithmeticException">errors/arithmetic</prop>
+				<prop key="java.lang.NullPointerException">errors/nullpointer</prop>
+			</props>
+		</property>
+		<property name="defaultErrorView" value="errors/erro"></property>
+	</bean>
+	
+	<!-- JSON 변환 설정 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
 </beans>
 
 
